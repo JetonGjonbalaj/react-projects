@@ -1,5 +1,19 @@
 import React, { Component } from 'react';
 
+const emailRegex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/;
+
+const formIsValid = formErrors => {
+  let valid = true;
+  
+  // For each value in formErrors
+  Object.values(formErrors).forEach(formError => {
+    // If formError's length is greater than 0, then valid will become false
+    formError.length > 0 && (valid = false);
+  });
+
+  return valid;
+}
+
 class Form extends Component {
   constructor(props) {
     super(props);
@@ -26,9 +40,11 @@ class Form extends Component {
     if (formIsValid(this.state.formErrors)) {
       // TODO 
       // when form is validated
+      console.log("Form is valid!");
     } else {
       // TODO
       // when form is not validated
+      console.log("Form is invalid!");
     }
   }
 
