@@ -10,6 +10,9 @@ const formIsValid = formErrors => {
     // If formError's length is greater than 0, then valid will become false
     if (formError === null) valid = false;
     else if (formError.length) valid = false;
+    
+    // if variable valid changed then exit foreach loop (so it doesn't go all the way)
+    if (!valid) return;
   });
 
   return valid;
@@ -132,7 +135,7 @@ class Form extends Component {
                 <input type="checkbox" className="form-check-input" name="acceptedTerms" onChange={this.handleChange} checked={this.state.acceptedTerms} noValidate/>
                 I Read and Accept <span className="text-primary">Terms and Conditions</span>
               </label>
-              {acceptedTerms ? <small className='text-danger'>{acceptedTerms}</small> : ''}
+              {acceptedTerms ? <div><small className='text-danger'>{acceptedTerms}</small></div> : ''}
             </div>
 
             <button className="btn btn-primary mt-4">Submit</button>
