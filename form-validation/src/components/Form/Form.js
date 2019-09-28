@@ -89,7 +89,7 @@ class Form extends Component {
     this.setState({
       formErrors,
       [name]: value
-    }, () => console.log(name, value));
+    });
   }
 
   render() {
